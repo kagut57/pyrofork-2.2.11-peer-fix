@@ -1,20 +1,21 @@
-#  Pyrogram - Telegram MTProto API Client Library for Python
+#  Pyrofork - Telegram MTProto API Client Library for Python
 #  Copyright (C) 2017-present Dan <https://github.com/delivrance>
+#  Copyright (C) 2022-present Mayuri-Chan <https://github.com/Mayuri-Chan>
 #
-#  This file is part of Pyrogram.
+#  This file is part of Pyrofork.
 #
-#  Pyrogram is free software: you can redistribute it and/or modify
+#  Pyrofork is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published
 #  by the Free Software Foundation, either version 3 of the License, or
 #  (at your option) any later version.
 #
-#  Pyrogram is distributed in the hope that it will be useful,
+#  Pyrofork is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU Lesser General Public License for more details.
 #
 #  You should have received a copy of the GNU Lesser General Public License
-#  along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
+#  along with Pyrofork.  If not, see <http://www.gnu.org/licenses/>.
 
 import html
 import logging
@@ -104,7 +105,7 @@ class Parser(HTMLParser):
             line, offset = self.getpos()
             offset += 1
 
-            log.debug(f"Unmatched closing tag </{tag}> at line {line}:{offset}")
+            log.debug("Unmatched closing tag </%s> at line %s:%s", tag, line, offset)
         else:
             if not self.tag_entities[tag]:
                 self.tag_entities.pop(tag)
@@ -132,7 +133,7 @@ class HTML:
             for tag, entities in parser.tag_entities.items():
                 unclosed_tags.append(f"<{tag}> (x{len(entities)})")
 
-            log.warning(f"Unclosed tags: {', '.join(unclosed_tags)}")
+            log.info("Unclosed tags: %s", ", ".join(unclosed_tags))
 
         entities = []
 
